@@ -1,0 +1,6 @@
+name: QQGuildBotMC
+version: '${version}'
+main: moe.xmcn.guildbot.qqguildbot.QQGuildBotMC
+api-version: 1.19
+authors: [ XiaMoHuaHuo_CN ]
+description: QQ频道机器人
