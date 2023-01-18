@@ -1,6 +1,19 @@
 name: QQGuildBotMC
-version: '${version}'
+version: '@plugin.version@'
 main: moe.xmcn.guildbot.qqguildbot.QQGuildBotMC
 api-version: 1.19
 authors: [ XiaMoHuaHuo_CN ]
 description: QQ频道机器人
+commands:
+  qgb:
+    description: "QQGuildBot Commands"
+  qqguildbot:
+    description: "QQGuildBot Commands"
+permission:
+  qqguildbot.*:
+    description: "QQGuildBot Permissions"
+    default: false
+    children:
+      qqguildbot.admin:
+        description: "QQGuildBot Admin Permission"
+        default: op

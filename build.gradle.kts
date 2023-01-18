@@ -26,11 +26,13 @@ dependencies {
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
     implementation("com.alibaba:fastjson:2.0.22")
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.50")
+    implementation("com.squareup.okhttp3:okhttp:3.14.7")
+    implementation("com.squareup.okio:okio:3.2.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
     testImplementation(kotlin("test"))
-    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.getByName<Test>("test") {
@@ -39,9 +41,14 @@ tasks.getByName<Test>("test") {
 
 tasks.compileJava {
     options.encoding = "UTF-8"
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+
 }
 tasks.compileTestJava {
     options.encoding = "UTF-8"
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
 }
 
 // 替换资源文件的Tokens`config.groovy`
@@ -62,7 +69,7 @@ fun delFiles(dir: String) {
     }
 }
 
-/*
+
 tasks.processResources {
     delFiles("$buildDir/resources")
     filteringCharset = "UTF-8"
@@ -78,24 +85,24 @@ tasks.processResources {
 
 }
 
- */
-
 tasks.create<Jar>("fatJar") {
-    setDuplicatesStrategy(DuplicatesStrategy.FAIL)
-    val sourceMain = java.sourceSets["main"]
-    from(sourceMain.output)
 
-    configurations.runtimeClasspath.get().filter {
-        it.name.startsWith("fastjson")
-    }.forEach { jar ->
-        from(zipTree(jar))
-    }
+    // To avoid the duplicate handling strategy error
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    // To add all of the dependencies
+    from(sourceSets.main.get().output)
+
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
 }
 
 //build命令依赖的其他命令
 tasks.build {
     dependsOn(
-        //tasks.processResources,
+        tasks.processResources,
         "fatJar"
     )
 }
