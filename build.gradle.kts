@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version "1.8.0"
 }
 
-group = "moe.xmcn.catsero"
+group = "moe.xmcn.qqguildbot"
 version = "0.1.0"
 
 repositories {
