@@ -1,6 +1,5 @@
-package moe.xmcn.guildbot.qqguildbot.command
+package moe.xmcn.linerrx.command
 
-import moe.xmcn.guildbot.qqguildbot.api.DoLogin
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor

@@ -1,10 +1,10 @@
-package moe.xmcn.guildbot.qqguildbot;
+package moe.xmcn.linerrx;
 
-import moe.xmcn.guildbot.qqguildbot.api.DoLogin;
-import moe.xmcn.guildbot.qqguildbot.command.QGB;
+import moe.xmcn.linerrx.util.DoLogin;
+import moe.xmcn.linerrx.command.QGB;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class QQGuildBotMC extends JavaPlugin {
+public final class LinerRX extends JavaPlugin {
 
     @Override
     public void onLoad() {

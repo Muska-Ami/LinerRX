@@ -1,18 +1,12 @@
-package moe.xmcn.guildbot.qqguildbot.api
+package moe.xmcn.linerrx.util
 
 import me.zhenxin.qqbot.api.ApiManager
 import me.zhenxin.qqbot.core.BotCore
 import me.zhenxin.qqbot.entity.AccessInfo
 import me.zhenxin.qqbot.enums.Intent
-import org.bukkit.plugin.Plugin
+import moe.xmcn.linerrx.EventBridge
 
-class DoLogin(
-    private val plugin: Plugin
-) {
-
-    fun getPlugin(): Plugin {
-        return plugin
-    }
+class DoLogin {
 
     companion object {
         fun login(botAppId: Int, botToken: String, sandbox: Boolean) {
@@ -29,7 +23,7 @@ class DoLogin(
             bot.registerIntents(Intent.AT_MESSAGES)
             // 设置事件处理器
             // handler.setRemoveAt(false); // 取消删除消息中的艾特
-            bot.setEventHandler(EventTool(api))
+            bot.setEventHandler(EventBridge(api))
             // 启动
             bot.start()
         }

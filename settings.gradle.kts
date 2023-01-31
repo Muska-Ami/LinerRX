@@ -1,1 +1,1 @@
-rootProject.name = "QQGuildBotMC"
+rootProject.name = "LinerRX"

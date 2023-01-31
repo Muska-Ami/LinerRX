@@ -1,19 +1,23 @@
-package moe.xmcn.guildbot.qqguildbot.api.bukkit
+package moe.xmcn.linerrx.api.bukkit
 
 import me.zhenxin.qqbot.api.ApiManager
 import me.zhenxin.qqbot.entity.MessageAttachment
 import me.zhenxin.qqbot.entity.MessageEmbed
 import me.zhenxin.qqbot.entity.User
 import me.zhenxin.qqbot.entity.ark.MessageArk
-import me.zhenxin.qqbot.event.DirectMessageEvent
+import me.zhenxin.qqbot.event.AtMessageEvent
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 import java.time.LocalDateTime
 
-class DirectMessageEvent(private val api: ApiManager, private val event: DirectMessageEvent) : Event() {
+class AtMessageEvent(private val api: ApiManager, private val event: AtMessageEvent) : Event() {
 
     val message: String
         get() = event.message.content
+    val messageId: String
+        get() = event.message.id
+    val channelId: String
+        get() = event.message.channelId
     val ark: MessageArk
         get() = event.message.ark
     val author: User
@@ -32,10 +36,12 @@ class DirectMessageEvent(private val api: ApiManager, private val event: DirectM
         get() = event.message.guildId
 
     override fun getHandlers(): HandlerList {
-        return handlerList
+        return Companion.handlers
     }
 
     companion object {
-        val handlerList = HandlerList()
+        private val handlers = HandlerList()
+        val handlerList: HandlerList
+            get() = handlers
     }
 }
