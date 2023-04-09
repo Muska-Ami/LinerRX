@@ -1,19 +1,19 @@
 name: LinerRX
 version: '@plugin.version@'
-main: moe.xmcn.guildbot.qqguildbot.LinerRX
+main: moe.xmcn.linerrx.LinerRX
 api-version: 1.19
 authors: [ XiaMoHuaHuo_CN ]
 description: QQ频道机器人
 commands:
-  qgb:
+  linerrx:
     description: "LinerRX Commands"
-  qqguildbot:
+  lrx:
     description: "LinerRX Commands"
 permission:
-  qqguildbot.*:
+  linerrx.*:
     description: "LinerRX Permissions"
     default: false
     children:
-      qqguildbot.admin:
+      linerrx.admin:
         description: "LinerRX Admin Permission"
         default: op

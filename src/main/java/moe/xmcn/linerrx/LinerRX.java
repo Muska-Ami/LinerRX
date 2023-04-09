@@ -1,10 +1,9 @@
 package moe.xmcn.linerrx;
 
 import moe.xmcn.linerrx.util.DoLogin;
-import moe.xmcn.linerrx.command.QGB;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class LinerRX extends JavaPlugin {
+public class LinerRX extends JavaPlugin {
 
     @Override
     public void onLoad() {
@@ -29,12 +28,14 @@ public final class LinerRX extends JavaPlugin {
             exception.printStackTrace();
         }
 
-        getCommand("qgb").setExecutor(new QGB(this));
-        getCommand("qqguildbot").setExecutor(new QGB(this));
+        getCommand("linerrx").setExecutor(new moe.xmcn.linerrx.command.LinerRX(this));
+        getCommand("lrx").setExecutor(new moe.xmcn.linerrx.command.LinerRX(this));
+        getServer().getPluginManager().registerEvents(new Test(), this);
     }
 
     @Override
     public void onDisable() {
+
         // Plugin shutdown logic
     }
 }
