@@ -30,7 +30,6 @@ public class LinerRX extends JavaPlugin {
 
         getCommand("linerrx").setExecutor(new moe.xmcn.linerrx.command.LinerRX(this));
         getCommand("lrx").setExecutor(new moe.xmcn.linerrx.command.LinerRX(this));
-        getServer().getPluginManager().registerEvents(new Test(), this);
     }
 
     @Override
