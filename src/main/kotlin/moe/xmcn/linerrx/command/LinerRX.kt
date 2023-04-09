@@ -6,7 +6,7 @@ import org.bukkit.command.TabExecutor
 import org.bukkit.plugin.Plugin
 import org.jetbrains.annotations.NotNull
 
-class QGB(
+class LinerRX(
     private val plugin: Plugin
 ): TabExecutor {
     override fun onTabComplete(
@@ -24,7 +24,7 @@ class QGB(
         @NotNull label: String,
         @NotNull args: Array<out String>
     ): Boolean {
-        sender.sendMessage("QQGuildBot Running!")
+        sender.sendMessage("LinerRX Running!")
         return true
     }
 

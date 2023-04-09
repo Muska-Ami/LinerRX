@@ -9,6 +9,10 @@ import moe.xmcn.linerrx.EventBridge
 class DoLogin {
 
     companion object {
+
+        @JvmStatic
+        lateinit var bot: BotCore
+
         fun login(botAppId: Int, botToken: String, sandbox: Boolean) {
             val accessInfo = AccessInfo()
             accessInfo.botAppId = botAppId //102034183 // 管理端的BotAppId
@@ -16,7 +20,7 @@ class DoLogin {
             // 使用沙盒模式
             if (sandbox) accessInfo.useSandBoxMode()
             // 创建实例
-            val bot = BotCore(accessInfo)
+            bot = BotCore(accessInfo)
             // 获取API管理器
             val api: ApiManager = bot.apiManager
             // 注册AT消息相关事件
