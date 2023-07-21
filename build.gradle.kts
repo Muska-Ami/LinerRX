@@ -4,31 +4,28 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.9.0"
 }
 
 group = "moe.xmcn.qqguildbot"
-version = "0.1.0"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi")
-    maven("https://crystal.app.lss233.com/repositories/minecraft")
+    maven("https://maven.fastmirror.net/repositories/minecraft")
     maven("https://jitpack.io")
 }
 
 dependencies {
     // 本地
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    //implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // 远程
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
-    implementation("com.alibaba:fastjson:2.0.22")
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.50")
-    implementation("com.squareup.okhttp3:okhttp:3.14.7")
-    implementation("com.squareup.okio:okio:3.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.10")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
@@ -59,7 +56,7 @@ fun loadEnv(): Any {
     //config.groovy配置文件,配置占位符 (@key@)
     val tokens = confProp.toProperties()
     logger.lifecycle("Tokens: $tokens")
-    return tokens;
+    return tokens
 }
 
 fun delFiles(dir: String) {
@@ -103,7 +100,7 @@ tasks.create<Jar>("fatJar") {
 tasks.build {
     dependsOn(
         tasks.processResources,
-        "fatJar"
+        //"fatJar"
     )
 }
 val compileKotlin: KotlinCompile by tasks

@@ -5,12 +5,15 @@ import me.zhenxin.qqbot.entity.MessageAttachment
 import me.zhenxin.qqbot.entity.MessageEmbed
 import me.zhenxin.qqbot.entity.User
 import me.zhenxin.qqbot.entity.ark.MessageArk
-import me.zhenxin.qqbot.event.DirectMessageEvent
+import me.zhenxin.qqbot.event.UserMessageEvent
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 import java.time.LocalDateTime
 
-class DirectMessageEvent(private val api: ApiManager, private val event: DirectMessageEvent) : Event() {
+class UserMessageEvent(
+    private val api: ApiManager,
+    private val event: UserMessageEvent
+) : Event() {
 
     /**
      * 获取消息内容
@@ -18,6 +21,20 @@ class DirectMessageEvent(private val api: ApiManager, private val event: DirectM
      */
     val message: String
         get() = event.message.content
+
+    /**
+     * 获取消息ID
+     * @return 消息ID
+     */
+    val messageId: String
+        get() = event.message.id
+
+    /**
+     * 获取子频道ID
+     * @return 子频道ID
+     */
+    val channelId: String
+        get() = event.message.channelId
 
     /**
      * 获取消息模板
@@ -83,14 +100,14 @@ class DirectMessageEvent(private val api: ApiManager, private val event: DirectM
 
     /**
      * 获取源事件（不安全）
-     * @return DirectMessageEvent
+     * @return AtMessageEvent
      */
     @Deprecated("Unsafe")
-    val originSession: DirectMessageEvent
+    val originSession: UserMessageEvent
         get() = event
 
     override fun getHandlers(): HandlerList {
-        return handlerList
+        return Companion.handlers
     }
 
     companion object {

@@ -3,6 +3,9 @@ version: '@plugin.version@'
 main: moe.xmcn.linerrx.LinerRX
 api-version: 1.19
 authors: [ XiaMoHuaHuo_CN ]
+libraries:
+  - me.zhenxin:qqbot-sdk:1.2.0
+  - org.jetbrains.kotlin:kotlin-stdlib:1.4.10
 description: QQ频道机器人
 commands:
   linerrx:

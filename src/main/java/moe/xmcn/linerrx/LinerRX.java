@@ -1,9 +1,12 @@
 package moe.xmcn.linerrx;
 
-import moe.xmcn.linerrx.util.DoLogin;
+import moe.xmcn.linerrx.util.BWSConnect;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LinerRX extends JavaPlugin {
+
+    public static Plugin INSTANCE;
 
     @Override
     public void onLoad() {
@@ -13,12 +16,13 @@ public class LinerRX extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        INSTANCE = this;
         int botAppId = getConfig().getInt("app.botAppId");
         String botToken = getConfig().getString("app.botToken");
 
         getLogger().info("正在登录到网关...");
         try {
-            DoLogin.Companion.login(
+            BWSConnect.Companion.login(
                     botAppId,
                     botToken,
                     false
@@ -34,7 +38,6 @@ public class LinerRX extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
         // Plugin shutdown logic
     }
 }

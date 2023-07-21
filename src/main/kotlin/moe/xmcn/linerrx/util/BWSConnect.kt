@@ -4,9 +4,9 @@ import me.zhenxin.qqbot.api.ApiManager
 import me.zhenxin.qqbot.core.BotCore
 import me.zhenxin.qqbot.entity.AccessInfo
 import me.zhenxin.qqbot.enums.Intent
-import moe.xmcn.linerrx.EventBridge
+import moe.xmcn.linerrx.EventTranslator
 
-class DoLogin {
+class BWSConnect {
 
     companion object {
 
@@ -15,8 +15,8 @@ class DoLogin {
 
         fun login(botAppId: Int, botToken: String, sandbox: Boolean) {
             val accessInfo = AccessInfo()
-            accessInfo.botAppId = botAppId //102034183 // 管理端的BotAppId
-            accessInfo.botToken = botToken //"u6aKk6VDFLMqzWsZ4qZnfeVRE42Eog8R" // 管理端的BotToken
+            accessInfo.botAppId = botAppId // 管理端的BotAppId
+            accessInfo.botToken = botToken // 管理端的BotToken
             // 使用沙盒模式
             if (sandbox) accessInfo.useSandBoxMode()
             // 创建实例
@@ -25,9 +25,12 @@ class DoLogin {
             val api: ApiManager = bot.apiManager
             // 注册AT消息相关事件
             bot.registerIntents(Intent.AT_MESSAGES)
+            bot.registerIntents(Intent.DIRECT_MESSAGE)
+            bot.registerIntents(Intent.USER_MESSAGES)
             // 设置事件处理器
             // handler.setRemoveAt(false); // 取消删除消息中的艾特
-            bot.setEventHandler(EventBridge(api))
+            bot.setEventHandler(EventTranslator(api))
+            InitExtend(api).init()
             // 启动
             bot.start()
         }
